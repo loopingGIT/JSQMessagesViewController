@@ -854,7 +854,18 @@ JSQMessagesKeyboardControllerDelegate>
 
     JSQMessagesCollectionViewCell *selectedCell = (JSQMessagesCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:self.selectedIndexPathForMenu];
     
-    CGRect selectedCellMessageBubbleFrame = [selectedCell convertRect:selectedCell.messageBubbleContainerView.frame toView:self.view];
+    NSLog(@"messageBubbleContainerView %@" , NSStringFromCGRect(selectedCell.messageBubbleContainerView.frame));
+    
+    id<JSQMessageData> messageItem = [self.collectionView.dataSource collectionView:self.collectionView messageDataForItemAtIndexPath:self.selectedIndexPathForMenu];
+    
+    UIView *aux = selectedCell.messageBubbleContainerView;
+    
+    if ([messageItem isMediaMessage]) {
+        NSLog(@"selectedCell mediaView %@" , NSStringFromCGRect([[selectedCell mediaView] frame]));
+        aux = [selectedCell mediaView];
+    }
+    
+    CGRect selectedCellMessageBubbleFrame = [selectedCell convertRect:aux.frame toView:self.view];
 
     [menu setTargetRect:selectedCellMessageBubbleFrame inView:self.view];
     [menu setMenuVisible:YES animated:YES];
