@@ -853,7 +853,14 @@ JSQMessagesKeyboardControllerDelegate>
     [menu setMenuVisible:NO animated:NO];
 
     JSQMessagesCollectionViewCell *selectedCell = (JSQMessagesCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:self.selectedIndexPathForMenu];
-    CGRect selectedCellMessageBubbleFrame = [selectedCell convertRect:selectedCell.messageBubbleContainerView.frame toView:self.view];
+    
+    UIView *aux = selectedCell.messageBubbleContainerView;
+    
+    if ([selectedCell mediaView] != nil) {
+        aux = [selectedCell mediaView];
+    }
+    
+    CGRect selectedCellMessageBubbleFrame = [selectedCell convertRect:aux.frame toView:self.view];
 
     [menu setTargetRect:selectedCellMessageBubbleFrame inView:self.view];
     [menu setMenuVisible:YES animated:YES];
