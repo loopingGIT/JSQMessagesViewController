@@ -854,15 +854,12 @@ JSQMessagesKeyboardControllerDelegate>
 
     JSQMessagesCollectionViewCell *selectedCell = (JSQMessagesCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:self.selectedIndexPathForMenu];
     
-    NSLog(@"messageBubbleContainerView %@" , NSStringFromCGRect(selectedCell.messageBubbleContainerView.frame));
-    
     id<JSQMessageData> messageItem = [self.collectionView.dataSource collectionView:self.collectionView messageDataForItemAtIndexPath:self.selectedIndexPathForMenu];
     
     UIView *aux = selectedCell.messageBubbleContainerView;
     
     if ([messageItem isMediaMessage]) {
-        NSLog(@"selectedCell mediaView %@" , NSStringFromCGRect([[selectedCell mediaView] frame]));
-        aux = [selectedCell mediaView];
+        aux = selectedCell.avatarContainerView;
     }
     
     CGRect selectedCellMessageBubbleFrame = [selectedCell convertRect:aux.frame toView:self.view];
