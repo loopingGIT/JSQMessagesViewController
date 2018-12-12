@@ -202,6 +202,8 @@ JSQMessagesKeyboardControllerDelegate>
 
     self.topContentAdditionalInset = 0.0f;
 
+    self.bottomContentAdditionalInset = 0.0f;
+
     [self jsq_updateCollectionViewInsets];
 
     // Don't set keyboardController if client creates custom content view via -loadToolbarContentView
@@ -256,6 +258,12 @@ JSQMessagesKeyboardControllerDelegate>
 - (void)setTopContentAdditionalInset:(CGFloat)topContentAdditionalInset
 {
     _topContentAdditionalInset = topContentAdditionalInset;
+    [self jsq_updateCollectionViewInsets];
+}
+
+- (void)setBottomContentAdditionalInset:(CGFloat)bottomContentAdditionalInset
+{
+    _bottomContentAdditionalInset = bottomContentAdditionalInset;
     [self jsq_updateCollectionViewInsets];
 }
 
