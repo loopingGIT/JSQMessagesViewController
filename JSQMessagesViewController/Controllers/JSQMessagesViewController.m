@@ -488,7 +488,7 @@ JSQMessagesKeyboardControllerDelegate>
 //                                atScrollPosition:scrollPosition
 //                                        animated:animated];
     
-    [self.collectionView setContentOffset: CGPointMake(0, 1000) animated: animated];
+    [self.collectionView setContentOffset: CGPointMake(0, 10000) animated: animated];
 }
 
 - (BOOL)isOutgoingMessage:(id<JSQMessageData>)messageItem
