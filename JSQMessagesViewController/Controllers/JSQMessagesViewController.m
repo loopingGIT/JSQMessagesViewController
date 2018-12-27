@@ -488,7 +488,7 @@ JSQMessagesKeyboardControllerDelegate>
 //                                atScrollPosition:scrollPosition
 //                                        animated:animated];
     
-    CGPoint point = CGPointMake(0, self.collectionView.contentSize.height - self.collectionView.bounds.height + 20.0)
+    CGPoint point = CGPointMake(0, self.collectionView.contentSize.height - self.collectionView.bounds.height + 20.0);
     [self.collectionView setContentOffset: point animated: animated];
 }
 
