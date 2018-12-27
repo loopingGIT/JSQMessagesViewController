@@ -493,7 +493,10 @@ JSQMessagesKeyboardControllerDelegate>
         CGFloat collectionViewFrameHeightAfterInserts = self.collectionView.frame.size.height - (self.collectionView.contentInset.top + self.collectionView.contentInset.bottom);
         
         if(collectionViewContentHeight > collectionViewFrameHeightAfterInserts) {
-            [self.collectionView setContentOffset:CGPointMake(0, self.collectionView.contentSize.height - self.collectionView.frame.size.height)
+            CGPoint point = CGPointMake(0, self.collectionView.contentSize.height  - self.collectionView.frame.size.height);
+            NSLog(NSStringFromCGPoint(point));
+            
+            [self.collectionView setContentOffset:point
                                          animated:animated];
         }
     } else {
