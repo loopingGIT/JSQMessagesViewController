@@ -472,17 +472,17 @@ JSQMessagesKeyboardControllerDelegate>
     //  workaround for really long messages not scrolling
     //  if last message is too long, use scroll position bottom for better appearance, else use top
     //  possibly a UIKit bug, see #480 on GitHub
-    CGSize cellSize = [self.collectionView.collectionViewLayout sizeForItemAtIndexPath:indexPath];
-    CGFloat maxHeightForVisibleMessage = CGRectGetHeight(self.collectionView.bounds)
-                                         - self.collectionView.contentInset.top
-                                         - self.collectionView.contentInset.bottom
-                                         - CGRectGetHeight(self.inputToolbar.bounds);
-    UICollectionViewScrollPosition scrollPosition = (cellSize.height > maxHeightForVisibleMessage) ? UICollectionViewScrollPositionBottom : UICollectionViewScrollPositionTop;
+//    CGSize cellSize = [self.collectionView.collectionViewLayout sizeForItemAtIndexPath:indexPath];
+//    CGFloat maxHeightForVisibleMessage = CGRectGetHeight(self.collectionView.bounds)
+//                                         - self.collectionView.contentInset.top
+//                                         - self.collectionView.contentInset.bottom
+//                                         - CGRectGetHeight(self.inputToolbar.bounds);
+//    UICollectionViewScrollPosition scrollPosition = (cellSize.height > maxHeightForVisibleMessage) ? UICollectionViewScrollPositionBottom : UICollectionViewScrollPositionTop;
 
     /*
      fix issue on chatviewcontroller, chat won't scroll to the bottom of screen.
      */
-//    UICollectionViewScrollPosition scrollPosition = UICollectionViewScrollPositionBottom;
+    UICollectionViewScrollPosition scrollPosition = UICollectionViewScrollPositionBottom;
     [self.collectionView scrollToItemAtIndexPath:indexPath
                                 atScrollPosition:scrollPosition
                                         animated:animated];
