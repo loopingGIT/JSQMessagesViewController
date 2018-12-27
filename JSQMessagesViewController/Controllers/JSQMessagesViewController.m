@@ -482,10 +482,25 @@ JSQMessagesKeyboardControllerDelegate>
     /*
      fix issue on chatviewcontroller, chat won't scroll to the bottom of screen.
      */
-    UICollectionViewScrollPosition scrollPosition = UICollectionViewScrollPositionBottom;
-    [self.collectionView scrollToItemAtIndexPath:indexPath
-                                atScrollPosition:scrollPosition
-                                        animated:animated];
+    
+    id<JSQMessageData> messageItem = [collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
+    NSParameterAssert(messageItem != nil);
+    
+    BOOL isOutgoingMessage = [self isOutgoingMessage:messageItem];
+    
+    if (isOutgoingMessage) {
+        CGFloat collectionViewContentHeight = self.collectionView.contentSize.height;
+        CGFloat collectionViewFrameHeightAfterInserts = self.collectionView.frame.size.height - (self.collectionView.contentInset.top + self.collectionView.contentInset.bottom);
+        
+        if(collectionViewContentHeight > collectionViewFrameHeightAfterInserts) {
+            [self.collectionView setContentOffset:CGPointMake(0, self.collectionView.contentSize.height - self.collectionView.frame.size.height) animated:NO];
+        }
+    } else {
+        UICollectionViewScrollPosition scrollPosition = UICollectionViewScrollPositionBottom;
+        [self.collectionView scrollToItemAtIndexPath:indexPath
+                                    atScrollPosition:scrollPosition
+                                            animated:animated];
+    }
 }
 
 - (BOOL)isOutgoingMessage:(id<JSQMessageData>)messageItem
