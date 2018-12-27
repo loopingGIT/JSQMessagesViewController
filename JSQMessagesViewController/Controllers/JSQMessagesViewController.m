@@ -493,7 +493,8 @@ JSQMessagesKeyboardControllerDelegate>
 //        CGFloat collectionViewFrameHeightAfterInserts = self.collectionView.frame.size.height - (self.collectionView.contentInset.top + self.collectionView.contentInset.bottom);
         
 //        if(collectionViewContentHeight > collectionViewFrameHeightAfterInserts) {
-            [self.collectionView setContentOffset:CGPointMake(0, self.collectionView.contentSize.height - self.collectionView.frame.size.height + self.collectionView.contentInset.bottom) animated:animated];
+            [self.collectionView setContentOffset:CGPointMake(0, self.collectionView.contentSize.height - self.collectionView.frame.size.height - self.collectionView.contentInset.bottom)
+                                         animated:animated];
 //        }
     } else {
         UICollectionViewScrollPosition scrollPosition = UICollectionViewScrollPositionBottom;
