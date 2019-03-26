@@ -92,6 +92,7 @@
  *  @param indexPath      The index path of the item for which the message bubble was tapped.
  */
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapMessageBubbleAtIndexPath:(NSIndexPath *)indexPath;
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView didDoubleTapMessageBubbleAtIndexPath:(NSIndexPath *)indexPath;
 
 /**
  *  Notifies the delegate that the cell at the specified indexPath did receive a tap event at the specified touchLocation.

@@ -157,6 +157,16 @@
     [self.delegate collectionView:self didTapMessageBubbleAtIndexPath:indexPath];
 }
 
+- (void)messagesCollectionViewCellDidDoubleTapMessageBubble:(JSQMessagesCollectionViewCell *)cell
+{
+    NSIndexPath *indexPath = [self indexPathForCell:cell];
+    if (indexPath == nil) {
+        return;
+    }
+    
+    [self.delegate collectionView:self didDoubleTapMessageBubbleAtIndexPath:indexPath];
+}
+
 - (void)messagesCollectionViewCellDidTapCell:(JSQMessagesCollectionViewCell *)cell atPosition:(CGPoint)position
 {
     NSIndexPath *indexPath = [self indexPathForCell:cell];

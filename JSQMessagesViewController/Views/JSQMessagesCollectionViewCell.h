@@ -44,6 +44,7 @@
  *  @param cell The cell that received the tap touch event.
  */
 - (void)messagesCollectionViewCellDidTapMessageBubble:(JSQMessagesCollectionViewCell *)cell;
+- (void)messagesCollectionViewCellDidDoubleTapMessageBubble:(JSQMessagesCollectionViewCell *)cell;
 
 /**
  *  Tells the delegate that the cell has been tapped at the point specified by position.
@@ -109,6 +110,12 @@
  *  This label is most commonly used to display message delivery status.
  */
 @property (weak, nonatomic, readonly) JSQMessagesLabel *cellBottomLabel;
+
+/**
+ *  Returns the label that is pinned to the bottom of the cell.
+ *  This label is most commonly used to display message delivery status.
+ */
+@property (weak, nonatomic, readonly) JSQMessagesLabel *cellSideLabel;
 
 /**
  *  Returns the text view of the cell. This text view contains the message body text.
