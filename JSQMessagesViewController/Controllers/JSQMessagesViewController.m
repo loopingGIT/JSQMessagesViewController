@@ -873,7 +873,7 @@ JSQMessagesKeyboardControllerDelegate>
     
     id<JSQMessageData> messageItem = [self.collectionView.dataSource collectionView:self.collectionView messageDataForItemAtIndexPath:self.selectedIndexPathForMenu];
     
-    CGRect aux = selectedCell.messageBubbleContainerView.frame;
+    CGRect aux = [selectedCell.messageBubbleContainerView.superview convertRect:selectedCell.messageBubbleContainerView.frame toView:selectedCell];
     
     if ([messageItem isMediaMessage]) {
         aux = selectedCell.avatarContainerView.frame;
