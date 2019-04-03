@@ -147,24 +147,24 @@
                       atIndexPath:indexPath];
 }
 
-- (void)messagesCollectionViewCellDidTapMessageBubble:(JSQMessagesCollectionViewCell *)cell
+- (void)messagesCollectionViewCellDidTapMessageBubble:(JSQMessagesCollectionViewCell *)cell withGesture: gesture
 {
     NSIndexPath *indexPath = [self indexPathForCell:cell];
     if (indexPath == nil) {
         return;
     }
 
-    [self.delegate collectionView:self didTapMessageBubbleAtIndexPath:indexPath];
+    [self.delegate collectionView:self didTapMessageBubbleAtIndexPath:indexPath withGesture: gesture];
 }
 
-- (void)messagesCollectionViewCellDidDoubleTapMessageBubble:(JSQMessagesCollectionViewCell *)cell
+- (void)messagesCollectionViewCellDidDoubleTapMessageBubble:(JSQMessagesCollectionViewCell *)cell withGesture:(UIGestureRecognizer *)gesture
 {
     NSIndexPath *indexPath = [self indexPathForCell:cell];
     if (indexPath == nil) {
         return;
     }
     
-    [self.delegate collectionView:self didDoubleTapMessageBubbleAtIndexPath:indexPath];
+    [self.delegate collectionView:self didDoubleTapMessageBubbleAtIndexPath:indexPath withGesture: gesture];
 }
 
 - (void)messagesCollectionViewCellDidTapCell:(JSQMessagesCollectionViewCell *)cell atPosition:(CGPoint)position

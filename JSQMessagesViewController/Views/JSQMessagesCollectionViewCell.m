@@ -63,6 +63,8 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
 @property (weak, nonatomic, readwrite) UITapGestureRecognizer *tapGestureRecognizer;
 
+@property (strong, nonatomic, readwrite) UITouch *lastLongPressTouch;
+
 - (void)jsq_handleTapGesture:(UITapGestureRecognizer *)tap;
 
 - (void)jsq_updateConstraint:(NSLayoutConstraint *)constraint withConstant:(CGFloat)constant;
@@ -380,13 +382,14 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 - (void)jsq_handleTapGesture:(UITapGestureRecognizer *)tap
 {
     CGPoint touchPt = [tap locationInView:self];
+    
     if (tap.numberOfTapsRequired == 2) {
-        [self.delegate messagesCollectionViewCellDidDoubleTapMessageBubble:self];
+        [self.delegate messagesCollectionViewCellDidDoubleTapMessageBubble:self withGesture:tap];
     } else if (CGRectContainsPoint(self.avatarContainerView.frame, touchPt)) {
         [self.delegate messagesCollectionViewCellDidTapAvatar:self];
     }
     else if (CGRectContainsPoint(self.messageBubbleContainerView.frame, touchPt)) {
-        [self.delegate messagesCollectionViewCellDidTapMessageBubble:self];
+        [self.delegate messagesCollectionViewCellDidTapMessageBubble:self withGesture:tap];
     }
     else {
         [self.delegate messagesCollectionViewCellDidTapCell:self atPosition:touchPt];
@@ -397,11 +400,15 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 {
     CGPoint touchPt = [touch locationInView:self];
 
+    
     if ([gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
         CGRect frameInCell = [self.messageBubbleContainerView.superview convertRect:self.messageBubbleContainerView.frame toView:self];
+        
+        self.lastLongPressTouch = touch;
+        
         return CGRectContainsPoint(frameInCell, touchPt);
     }
-    
+
     return NO;
 }
 

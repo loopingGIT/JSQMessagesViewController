@@ -43,8 +43,8 @@
  *
  *  @param cell The cell that received the tap touch event.
  */
-- (void)messagesCollectionViewCellDidTapMessageBubble:(JSQMessagesCollectionViewCell *)cell;
-- (void)messagesCollectionViewCellDidDoubleTapMessageBubble:(JSQMessagesCollectionViewCell *)cell;
+- (void)messagesCollectionViewCellDidTapMessageBubble:(JSQMessagesCollectionViewCell *)cell withGesture:(UIGestureRecognizer *)gesture;
+- (void)messagesCollectionViewCellDidDoubleTapMessageBubble:(JSQMessagesCollectionViewCell *)cell withGesture:(UIGestureRecognizer *)gesture;
 
 /**
  *  Tells the delegate that the cell has been tapped at the point specified by position.
@@ -173,6 +173,8 @@
  *  This gesture handles the tap event for the avatarImageView and notifies the cell's delegate.
  */
 @property (weak, nonatomic, readonly) UITapGestureRecognizer *tapGestureRecognizer;
+
+@property (strong, nonatomic, readonly) UITouch *lastLongPressTouch;
 
 #pragma mark - Class methods
 

@@ -876,8 +876,21 @@ JSQMessagesKeyboardControllerDelegate>
     CGRect aux = [selectedCell.messageBubbleContainerView.superview convertRect:selectedCell.messageBubbleContainerView.frame toView:selectedCell];
     
     if ([messageItem isMediaMessage]) {
-        aux = selectedCell.avatarContainerView.frame;
-        aux.origin.y = 0;
+        UIView *lastPressView = selectedCell.lastLongPressTouch.view;
+        
+        CGPoint lastPressPoint = [selectedCell.lastLongPressTouch locationInView:lastPressView];
+        
+        UIView *lastPressSubview = NULL;
+        
+        for (UIView *subview in lastPressView.subviews) {
+            if(CGRectContainsPoint(subview.frame, lastPressPoint)){
+                lastPressSubview = subview;
+            }
+        }
+        
+        if (lastPressSubview != NULL) {
+            aux = [lastPressSubview.superview convertRect:lastPressSubview.frame toView:selectedCell];
+        }
     }
     
     CGRect selectedCellMessageBubbleFrame = [selectedCell convertRect:aux toView:self.view];
